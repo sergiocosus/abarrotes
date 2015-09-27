@@ -1,0 +1,234 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17/06/2014, 07:33:27 PM
+    Author     : Alex XD
+*/
+
+body{
+    background: black;
+    text-align: center;
+    
+}
+checkbox{
+    border-radius: 10px;
+}
+
+#menu{
+    margin: 0px;
+}
+#menu li{
+    font-family: arial black;
+    font-size: 80%; 
+    -webkit-transition: .3s;
+    text-align: center;
+    list-style:none;
+    font-weight:bold;
+    background:#cc0000;
+    border: rgb(75,50,50) solid medium;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    display: inline-block;
+    height: 30px;
+    padding-top:15px;
+    padding-left:5px;
+    padding-right: 5px;
+    padding-bottom:0px;
+    position: relative;
+    color:white;
+    //margin: 0px;
+}
+#menuI li{ font-family: arial black;
+    font-size: 80%; 
+    -webkit-transition: .3s;
+    text-align: center;
+    list-style:none;
+    background:#cc0000;
+    border: rgb(75,50,50) solid medium;
+    border-radius: 20px;
+    height: 30px;
+    padding-top:5px;    
+    margin-bottom: 5px;
+    margin-left:  19%;
+    margin-right: 18%;
+    position: relative;
+    
+}
+
+#menuI{
+    margin: 0px;
+}
+
+#menuI li:hover{
+    background: red;
+}
+
+#menuI a{
+    color: white;
+}
+#cuadro_inicio{
+    color:white;
+    background: rgb(242,242,242);
+    border-radius: 30px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: relative;
+    padding: 5%;
+    font-family: arial black;
+}
+
+#cuadro_inicio div{
+    display:none;
+    background: gray;
+    border-radius: 20px;
+    margin:1%;
+}
+#cuadro_inicio form{
+    background-color: rgba(0,0,0,.3);
+    border-radius: 10px;
+    padding:5px;
+    margin:2px;
+}
+
+form{
+    margin:0px;
+}
+
+#cuadrito{
+    background: rgb(242,242,242);
+    border-radius: 30px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: relative;
+    top:-20px;
+}
+
+#menu li:hover{
+    background: red;
+}
+#menu li a{
+     color: white;
+     
+}
+
+
+#eleccion,#eleccionRefaccion,#eleccionServicio,#verDetalle{
+    position:fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    margin:auto;
+    width: 90%;
+    height: 90%;
+    background-color: rgba(200,200,200,.9);
+    border:rgb(30,40,50) solid thick;
+    border-radius: 10%;
+    z-index: 10;
+    text-align: center;
+    
+}
+
+#elementos,#elementosRefaccion,#elementosServicio,#elementosDetalle{
+    display: inline-block;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    width: 90%;
+    height: 80%;
+    border: gray solid thin;
+    background-color: rgba(0,0,0,.1);
+}
+
+#elementos a,#elementosRefaccion a,#elementosServicio a{
+    color:black;
+}
+
+
+
+input{   
+    border-radius: 30px;
+    background: #ffffdd;
+    border: darkgray solid thin;
+
+    font: arial;    
+}
+
+[type="button"]{
+     background: #ccccee;
+}
+
+[type="submit"]{
+     background: #cceecc;
+}
+
+[readonly="readonly"]{
+    background-color: rgb(200,200,200);
+}
+
+table{
+    font-family: Arial;
+    display: inline-block;
+    border: gray thin solid;
+    border-radius: 5px;
+    margin:5px;
+}
+
+table tr{
+    border: white thin solid;
+
+}
+
+
+table tr:nth-child(even){
+    background-color:rgba(100,100,100,.2);
+}
+
+table th{
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+#lista{
+    background-color: rgba(0,0,50,.2);
+    border-radius: 2%;
+    padding:5px;
+}
+
+.venta {
+    text-align: center;
+}
+
+.accionesVenta {
+    float: left;
+    text-align: right;
+    width: 40%;
+}
+
+.datosVenta {
+    display: inline-block;
+        width: 20%;
+}
+
+.detallesVenta {
+    float: right;
+    text-align: left;
+        width: 40%;
+}
+
+
+[name="id_producto"],[name="id_usuario"],
+[name="id_cliente"],[name="id_proveedor"],[name="precio"],[name="cantidad"],
+[name="existencias"],[name="costo"]{
+    width:60px;
+}
+
+
+
+[name="telefono"],[name="celular"],[name="contrasena"],[name="apellido_paterno"],
+[name="apellido_materno"],[name="contrasena"]{
+    width:90px;
+}
+ 

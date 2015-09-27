@@ -1,0 +1,35 @@
+AddDefaultCharset utf-8
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:JeseHu
+ErrorDocument 404 /404.html
+# DO NOT REMOVE THIS LINE AND THE LINES ABOVE JeseHu:ERRORPAGEID
+
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [PT,L]
+
+</IfModule>
+
+
+<ifmodule mod_expires.c>
+    <filesmatch "\.(jpg|JPG|gif|GIF|png|PNG|ico)$">
+        ExpiresActive on
+        ExpiresDefault "access plus 30 days"
+    </filesmatch>
+</ifmodule>
+
+<ifmodule mod_expires.c>
+    <filesmatch "\.(js|css)$">
+        ExpiresActive on
+        ExpiresDefault "access plus 7 days"
+    </filesmatch>
+</ifmodule>
+
+<filesMatch "\.(js|css|html|php)$">
+    SetOutputFilter DEFLATE
+</filesMatch>
+
+Options -Indexes
