@@ -1,0 +1,11 @@
+{
+    "name": "sergio/rinbo.net",
+    "description": "Point of sale",
+    "authors": [
+        {
+            "name": "Sergio Contreras Sustaita",
+            "email": "sergiocosus@gmail.com"
+        }
+    ],
+    "require": {}
+}
