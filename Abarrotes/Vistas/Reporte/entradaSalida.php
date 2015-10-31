@@ -92,11 +92,11 @@
            table=$('<table>');
            tr=$('<tr>'); 
            if(json.length==0){
-               alert("No se encontró ninguna venta");
+               alert("No se encontró ninguna registro");
            }else{ 
                var idactual=-1;
-               table.html('<tr><th>Fecha y Hora</th><th>#Usuario</th><th>Nombre</th><th>#Producto</th>Nombre<th>Cantidad</th><th>Cantidad</th><th>Costo</th></tr>')
-               
+               table.html('<tr><th>Fecha y Hora</th><th>#Usuario</th><th>Nombre</th><th>#Producto</th>Nombre<th>Cantidad</th><th>Cantidad</th><th>Costo</th><th>SubTotal</th></tr>')
+               var total = 0;
                for(var i=0; i<json.length;i++){
                     tr=$('<tr>');
 
@@ -108,11 +108,14 @@
                     s5=$('<td>',{text:json[i].producto_nombre});
                     s6=$('<td>',{text:json[i].usuario_producto_cantidad});
                     s7=$('<td>',{text:json[i].costo});
-
-                    tr.append(s1,s2,s3,s4,s5,s6,s7);
+                    s8=$('<td>',{text: +json[i].usuario_producto_cantidad * +json[i].costo});
+                    total += +json[i].usuario_producto_cantidad * +json[i].costo;
+                   console.log(total);
+                    tr.append(s1,s2,s3,s4,s5,s6,s7,s8);
                     table.append(tr);
                }
            }
+           lista.append($('<b>',{text:'<<Gran Total: $'+total.toFixed(2)+">>"}),'<br/>');
            lista.append(table);
        } 
 
