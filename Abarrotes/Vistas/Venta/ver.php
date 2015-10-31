@@ -553,10 +553,11 @@
                     $('#cambio').text((parseFloat($('#efectivoLista').val()) - calcularTotal()).toFixed(2));
                     $('#numArticulos').text(productosEnTabla.length);
                     $('#num-venta').text(responseText);
-                    //$('#cajero').text();
-                    alert('Venta Completada \n ' + responseText ); 
-                    
-                    window.print();
+
+                    if(confirm("Venta Completada \n Id de venta:" + responseText+"\n ¿Desea imprimir el ticket?")){
+                        window.print();
+                    }
+
                     divGranTotal.text('Total: $0');
                     limpiarFormulario();
                     $('#tablaTicket').find("tr:gt(0)").remove();
