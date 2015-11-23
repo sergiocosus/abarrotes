@@ -20,13 +20,14 @@
         <form id="formObtenerVarios" action="/Abarrotes/EntradaSalida/ObtenerTodos" method="post">
             <table>
                 <tr>
-                    <th colspan="5">
+                    <th colspan="6">
                         Reporte de entradas/salidas
                     </th>
                 </tr>
                 <tr>
                     <th>#Producto</th>
                     <th>#Usuario</th>
+                    <th>Tipo</th>
                     <th>Fecha inicio</th>
                     <th>Fecha fin</th>
                     <th></th>
@@ -37,6 +38,14 @@
                     </td>
                     <td>
                         <input type="checkbox"/><span><input disabled name="id_usuario" type="number"  step="1" min="0" placeholder="#Usuario"/></span>
+                    </td>
+                    <td>
+                        <select name="tipo">
+                            <option value="">Sin filtro</option>
+                            <option value="Ajuste">Ajuste</option>
+                            <option value="Caducado">Caducado</option>
+                            <option value="Traslado">Traslado</option>
+                        </select>
                     </td>
                     <td>
                         <input  name="fecha_hora" type="date" />
@@ -95,7 +104,7 @@
                alert("No se encontró ninguna registro");
            }else{ 
                var idactual=-1;
-               table.html('<tr><th>Fecha y Hora</th><th>#Usuario</th><th>Nombre</th><th>#Producto</th>Nombre<th>Cantidad</th><th>Cantidad</th><th>Costo</th><th>SubTotal</th></tr>')
+               table.html('<tr><th>Fecha y Hora</th><th>#Usuario</th><th>Nombre</th><th>#Producto</th><th>Nombre</th><th>Tipo</th><th>Cantidad</th><th>Costo</th><th>SubTotal</th></tr>')
                var total = 0;
                for(var i=0; i<json.length;i++){
                     tr=$('<tr>');
@@ -104,14 +113,14 @@
                     s2=$('<td>',{text:json[i].id_usuario});
                     s3=$('<td>',{text:json[i].usuario_nombre});
                     s4=$('<td>',{text:json[i].id_producto});
-
                     s5=$('<td>',{text:json[i].producto_nombre});
-                    s6=$('<td>',{text:json[i].usuario_producto_cantidad});
-                    s7=$('<td>',{text:json[i].costo});
-                    s8=$('<td>',{text: +json[i].usuario_producto_cantidad * +json[i].costo});
+                    s6=$('<td>',{text:json[i].tipo});
+                    s7=$('<td>',{text:json[i].usuario_producto_cantidad});
+                    s8=$('<td>',{text:json[i].costo});
+                    s9=$('<td>',{text: +json[i].usuario_producto_cantidad * +json[i].costo});
                     total += +json[i].usuario_producto_cantidad * +json[i].costo;
                    console.log(total);
-                    tr.append(s1,s2,s3,s4,s5,s6,s7,s8);
+                    tr.append(s1,s2,s3,s4,s5,s6,s7,s8,s9);
                     table.append(tr);
                }
            }

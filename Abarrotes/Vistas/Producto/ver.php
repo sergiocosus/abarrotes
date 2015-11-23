@@ -28,6 +28,14 @@
                     <span>#Costo</span>
                     <input type="number" required name="costo" step="0.01" placeholder="Costo"/>
                 </div>
+                <div>
+                    <span>Tipo</span>
+                    <select name="tipo">
+                        <option value="Ajuste">Ajuste</option>
+                        <option value="Caducado">Caducado</option>
+                        <option value="Traslado">Traslado</option>
+                    </select>
+                </div>
                 <input type="submit"/>
             </form>
             </br>

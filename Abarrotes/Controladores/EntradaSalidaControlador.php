@@ -28,9 +28,10 @@ class EntradaSalidaControlador extends BaseControlador {
         if(isset($_POST['usuario_producto_cantidad'])){
             $_POST['usuario_producto.cantidad']=$_POST['usuario_producto_cantidad'];
         }
+
     
         for($i=1;$i<count($array);$i++){
-            if(isset($_POST[$array[$i][0]])){
+            if(isset($_POST[$array[$i][0]]) && !empty($_POST[$array[$i][0]])){
 
                 $condiciones[]=&$_POST[$array[$i][0]];
                 $tipos.=$array[$i][1];
