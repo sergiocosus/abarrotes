@@ -34,6 +34,13 @@
                         <option value="Ajuste">Ajuste</option>
                         <option value="Caducado">Caducado</option>
                         <option value="Traslado">Traslado</option>
+                        <option value="Conversion">Conversión</option>
+                        <option value="Consesion">Consesión</option>
+                        <option value="Compra">Compra</option>
+                        <option value="Promocion">Promoción</option>
+                        <option value="Consumible">Consumible</option>
+                        <option value="Comision">Comisión</option>
+                        <option value="Otros">Otros</option>
                     </select>
                 </div>
                 <input type="submit"/>
