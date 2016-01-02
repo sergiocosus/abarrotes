@@ -13,6 +13,7 @@
                 <a href="/Abarrotes/Reporte/Reimpresion"><li>Reimpresión de tickets</li> </a>
                 <a href="/Abarrotes/Reporte/EntradaSalida" ><li>Reporte de entradas y salidas</li></a>
                 <a href="/Abarrotes/Reporte/Inventario" ><li>Reporte de inventario</li></a>
+                <a href="/Abarrotes/Reporte/InventarioPasado" ><li>Reporte de inventario pasado</li></a>
                  <a href="/Abarrotes/Reporte/Minimo" ><li>Reporte de mínimos</li></a>
             </ul>
         </div> 

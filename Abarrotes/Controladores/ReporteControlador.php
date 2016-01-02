@@ -25,6 +25,12 @@ class ReporteControlador extends BaseControlador {
         sesionNivel('a','g');
         include 'Vistas/Reporte/inventario.php';
     }
+
+    function accionInventarioPasado(){
+        sesionNivel('a','g');
+        include 'Vistas/Reporte/inventarioPasado.php';
+    }
+
     function accionReimpresion(){
         sesionNivel('a','e','g');
         include 'Vistas/Reporte/venta_reimpresion.php';
