@@ -30,7 +30,8 @@
                 </div>
                 <div>
                     <span>Tipo</span>
-                    <select name="tipo">
+                    <select name="tipo" required>
+                        <option value="">None</option>
                         <option value="Ajuste">Ajuste</option>
                         <option value="Caducado">Caducado</option>
                         <option value="Traslado">Traslado</option>
@@ -283,12 +284,14 @@ Existencias.id_producto=formActInv.find('[name="id_producto"]');
 Existencias.nombre=formActInv.find('[name="nombre"]');
 Existencias.cantidad=formActInv.find('[name="cantidad"]');
 Existencias.costo=formActInv.find('[name="costo"]');
-
+Existencias.costo=formActInv.find('[name="tipo"]');
 Existencias.actual=null;
 
 
 
-eleccion.children('button').on('click',function(){eleccion.hide(200);});
+eleccion.children('button').on('click',function(){
+    eleccion.hide(200);
+});
 
 var elementos=$('#elementos');
 eleccion.hide();
@@ -306,6 +309,7 @@ function despues(responseText, statusText, xhr, $form)  {
     if(responseText=="0"){
         eleccion.hide(200);
         Existencias.cantidad.val(0);
+        formActInv.resetForm();
         $.post("/Abarrotes/Producto/ObtenerTodos", { id_producto: $form[0][0].value },function(data){
             producto =  JSON.parse(data)[0]; 
             Existencias.actual.html(producto.existencias);

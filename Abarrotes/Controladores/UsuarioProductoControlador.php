@@ -14,11 +14,22 @@ class UsuarioProductoControlador extends BaseControlador {
     function actualizaInserta($opcion){
         sesionNivel('a','g','e');
         include_once 'Modelos/'.$this->modelo.'.php';
+        include 'Modelos/Producto.php';
         $modelo=$this->modelo;
  
         if(isset($_POST['id_producto'],$_POST['cantidad'],$_POST['costo'],$_POST['tipo'])){
                
             $producto=new UsuarioProducto();
+
+            if($_POST['cantidad'] < 0){
+                $cantidad = -$_POST['cantidad'];
+                $id_producto = $_POST['id_producto'];
+                $productoAChecar = Producto::obtenerPorCondicion(' where id_producto=?',[&$id_producto],'i');
+                if($productoAChecar->existencias < $cantidad){
+                    die('No hay suficientes existencias para disminuir');
+                }
+            }
+
 
             $producto->id_producto=$_POST['id_producto'];
             $producto->cantidad=$_POST['cantidad'];
@@ -30,7 +41,7 @@ class UsuarioProductoControlador extends BaseControlador {
                 sesionNivel('a');
             }            
             if($producto->$opcion()===""){
-                 include 'Modelos/Producto.php';
+
                  if(Producto::modificarExistencias($producto->id_producto, $producto->cantidad)==""){
                     echo '0';
                  }
