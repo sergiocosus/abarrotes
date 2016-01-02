@@ -100,7 +100,7 @@
                     td2.append(json[i].fecha_hora);
                     td3.append(json[i].id_usuario);
                     td4.append(json[i].id_cliente);
-                    td5.append(json[i].total);
+                    td5.append(json[i].total.formatMoney());
                     
                     button=$('<button>',{text:'Imprimir',click:function(){ var id=json[i].id_venta; return function(){
                         $.post( "/Abarrotes/VentaR/obtenerTodos", {id_venta: id},function(data){

@@ -149,11 +149,11 @@
                        td1.append(json[i].id_producto);
                        td2.append(json[i].producto_nombre);
                        td3.append(json[i].cantidad);
-                       td4.append('$'+json[i].precio);
-                       td5.append('$'+parseFloat(json[i].total).toFixed(2));
+                       td4.append(json[i].precio.formatMoney());
+                       td5.append(json[i].total.formatMoney());
 
                        totalVenta+=parseFloat(json[i].total);
-                       $totalVenta.text('Total '+totalVenta);
+                       $totalVenta.text('Total '+totalVenta.formatMoney());
                        tr.append(td1,td2,td3,td4,td5);
                        table.append(tr);
                    }
@@ -162,7 +162,7 @@
 
                     total+=parseFloat(json[i].total);
                } 
-               lista.prepend($('<b>',{text:'<<Gran Total: $'+total.toFixed(2)+">>"}));
+               lista.prepend($('<b>',{text:'<<Gran Total: '+total.formatMoney()+">>"}));
            }
        } 
 

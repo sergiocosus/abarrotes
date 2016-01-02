@@ -181,7 +181,7 @@
             efectivoLista.on('keyup',calcularCambio);
             
             function calcularCambio(){
-                cambioLista.val("$"+(parseFloat($('#efectivoLista').val())-calcularTotal())); 
+                cambioLista.val((parseFloat($('#efectivoLista').val())-calcularTotal()).formatMoney());
             }
             
             cancelarVenta.on('click',function(){
@@ -550,7 +550,7 @@
                     $('#fecha-hora').text(datetime);
                     $('#total').text(calcularTotal());
                     $('#efectivo').text($('#efectivoLista').val());
-                    $('#cambio').text((parseFloat($('#efectivoLista').val()) - calcularTotal()).toFixed(2));
+                    $('#cambio').text(($('#efectivoLista').val() - calcularTotal()).formatMoney());
                     $('#numArticulos').text(productosEnTabla.length);
                     $('#num-venta').text(responseText);
 

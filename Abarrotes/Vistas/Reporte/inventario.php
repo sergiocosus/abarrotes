@@ -189,10 +189,10 @@
                         $('<td>',{text:json[i].categoria}),
                         $('<td>',{text:json[i].existencias}),
                         $('<td>',{text:(json[i].minimo===null)?(""):(json[i].minimo)}),
-                        $('<td>',{text:"$"+costo}),
-                        $('<td>',{text:"$"+costoTotal}),
-                        $('<td>',{text:"$"+fix2(json[i].precio)}),
-                        $('<td>',{text:"$"+ fix2(json[i].precioTotal)}));
+                        $('<td>',{text:costo.formatMoney()}),
+                        $('<td>',{text:costoTotal.formatMoney()}),
+                        $('<td>',{text:json[i].precio.formatMoney()}),
+                        $('<td>',{text:json[i].precioTotal.formatMoney()}));
                 
                     totalPrecio+=parseFloat(json[i].precio)*parseFloat(json[i].existencias);
                     totalCosto+=parseFloat(json[i].costo||0)*parseFloat(json[i].existencias);
@@ -201,9 +201,9 @@
                lista.append(tabla);
                lista.prepend($('<b>',{text:'Cantidad de productos diferentes: '+json.length}));
                lista.prepend($('<br/>'));
-               lista.prepend($('<b>',{text:'Valor al Precio del Inventario: '+totalPrecio.toFixed(2)}));
+               lista.prepend($('<b>',{text:'Valor al Precio del Inventario: '+totalPrecio.formatMoney()}));
                lista.prepend($('<br/>'));
-               lista.prepend($('<b>',{text:'Valor al Costo del Inventario: '+totalCosto.toFixed(2)}));
+               lista.prepend($('<b>',{text:'Valor al Costo del Inventario: '+totalCosto.formatMoney()}));
                
            }
        } 

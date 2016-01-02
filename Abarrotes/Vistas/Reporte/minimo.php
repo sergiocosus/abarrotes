@@ -185,16 +185,16 @@
                         $('<td>',{text:json[i].existencias}),
                                 $('<td>',{text:json[i].minimo}),
                         $('<td>',{text:json[i].faltante}),
-                        $('<td>',{text:"$"+costo}),
+                        $('<td>',{text:costo.formatMoney()}),
                        
-                        $('<td>',{text:"$"+fix2(json[i].precio)}));
+                        $('<td>',{text:json[i].precio.formatMoney()}));
                 
                     totalPrecio+=parseFloat(json[i].precio)*parseFloat(json[i].existencias);
                     
                     tabla.append(tr);
                }
                lista.append(tabla);
-               lista.append($('<div>',{text:'Valor al Precio del Inventario: '+totalPrecio.toFixed(2)}));
+               lista.append($('<div>',{text:'Valor al Precio del Inventario: '+totalPrecio.formatMoney()}));
                lista.append($('<div>',{text:'Cantidad de productos diferentes: '+json.length}));
            }
        } 

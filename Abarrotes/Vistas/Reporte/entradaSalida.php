@@ -116,15 +116,15 @@
                     s5=$('<td>',{text:json[i].producto_nombre});
                     s6=$('<td>',{text:json[i].tipo});
                     s7=$('<td>',{text:json[i].usuario_producto_cantidad});
-                    s8=$('<td>',{text:json[i].costo});
-                    s9=$('<td>',{text: +json[i].usuario_producto_cantidad * +json[i].costo});
+                    s8=$('<td>',{text:json[i].costo.formatMoney()});
+                    s9=$('<td>',{text: (+json[i].usuario_producto_cantidad * +json[i].costo).formatMoney()});
                     total += +json[i].usuario_producto_cantidad * +json[i].costo;
                    console.log(total);
                     tr.append(s1,s2,s3,s4,s5,s6,s7,s8,s9);
                     table.append(tr);
                }
            }
-           lista.append($('<b>',{text:'<<Gran Total: $'+total.toFixed(2)+">>"}),'<br/>');
+           lista.append($('<b>',{text:'<<Gran Total: '+total.formatMoney()+">>"}),'<br/>');
            lista.append(table);
        } 
 
