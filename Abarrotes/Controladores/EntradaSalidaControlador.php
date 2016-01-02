@@ -56,8 +56,15 @@ class EntradaSalidaControlador extends BaseControlador {
             
         }
          
-        $cliente=($modelo::obtenerTodos($condicion, $condiciones,$tipos));
-        $json=  json_encode($cliente);
+        $datos=($modelo::obtenerTodos($condicion, $condiciones,$tipos));
+
+        foreach ($datos as &$dato){
+            $datetime = new DateTime($dato->fecha_hora);
+            $dato->fecha = $datetime->format('Y-m-d');
+            $dato->hora = $datetime->format('H:i:s');
+        }
+
+        $json=  json_encode($datos);
 
         echo $json;
 
