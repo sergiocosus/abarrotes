@@ -13,13 +13,12 @@ class InventarioPasado extends SQLconexion{
     static function obtenerTodos($condicion="",$condiciones=array(),$type="",$order=""){
         $productos=array();
         $producto=new InventarioPasado();
-       /* $stmt=self::prepare(' select * from InventarioPasado  '.$condicion.' '.$order);
-        * */
+
         $stmt=self::prepare('select p.id_producto as id,
        p.codigo_barras as codigo_barras,
        p.nombre as nombre,
        p.descripcion as descripcion,
-      (p.existencias - ifnull(usuario_producto_total.cantidad_total,0) + ifnull(venta_producto_total.cantidad_total,0)) as existencia,
+      (p.existencias - ifnull(usuario_producto_total.cantidad_total,0) + ifnull(venta_producto_total.cantidad_total,0)) as existencias,
        p.minimo as minimo,
        p.precio as precio,
   (p.existencias - ifnull(usuario_producto_total.cantidad_total,0) + ifnull(venta_producto_total.cantidad_total,0))*p.precio as precioTotal,
@@ -43,7 +42,7 @@ from producto as p
 
        join categoria as c on (id_categoria=id)
 
-GROUP BY p.id_producto;  '.$condicion.' '.$order);
+GROUP BY p.id_producto  '.$condicion.' '.$order);
         //echo 'SELECT * FROM '.self::$tabla.' '.$condicion.' '.$order;
         if(count($condiciones)!=0)
             call_user_func_array(array($stmt, "bind_param"), array_merge(array($type), $condiciones));
