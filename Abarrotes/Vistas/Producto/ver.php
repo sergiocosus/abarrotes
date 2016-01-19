@@ -25,6 +25,10 @@
                     <input type="number" required name="cantidad" placeholder="Cantidad"/>
                 </div>
                 <div>
+                    <span>Costo anterior</span>
+                    <input type="number" name="costo_anterior" disabled />
+                </div>
+                <div>
                     <span>#Costo</span>
                     <input type="number" required name="costo" step="0.01" placeholder="Costo"/>
                 </div>
@@ -210,8 +214,9 @@ function agregarElementosConsulta(json){
             }else{
                 Existencias.cantidad.attr('step',1 );
             }
-            eleccion.show(); 
-            Existencias.costo.attr('value',e.data.producto.costo);
+            eleccion.show();
+            Existencias.costoAnterior.attr('value', e.data.producto.costo);
+            Existencias.costo.attr('value','');
             Existencias.cantidad.attr('value','0');
             Existencias.cantidad.focus();
          }
@@ -284,7 +289,8 @@ Existencias.id_producto=formActInv.find('[name="id_producto"]');
 Existencias.nombre=formActInv.find('[name="nombre"]');
 Existencias.cantidad=formActInv.find('[name="cantidad"]');
 Existencias.costo=formActInv.find('[name="costo"]');
-Existencias.costo=formActInv.find('[name="tipo"]');
+Existencias.tipo=formActInv.find('[name="tipo"]');
+Existencias.costoAnterior=formActInv.find('[name="costo_anterior"]');
 Existencias.actual=null;
 
 
