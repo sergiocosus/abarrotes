@@ -21,7 +21,7 @@ class InventarioPasadoControlador extends BaseControlador {
 
 
 
-           $fecha1=$_POST['fecha_hora'];
+           $fecha1=$_POST['fecha_hora'].' 23:59:59';
 
            $condiciones[]=&$fecha1;
            $condiciones[]=&$fecha1;
