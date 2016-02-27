@@ -1,3 +1,3 @@
 <?php
 include 'env.php';
-header('Location: '.$GLOBALS['env']['path']);
+header('Location: /Abarrotes');
