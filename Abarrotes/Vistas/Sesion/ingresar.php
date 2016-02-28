@@ -1,7 +1,7 @@
 <?php 
     if(!empty($GLOBALS['env']['password'])){
         if(!(isset($_POST['contrasena']) and $_POST['contrasena']==$GLOBALS['env']['password'])){
-              header('Location: http://rinbo.net');
+              header('Location: http://'.$GLOBALS['env']['main_domain']);
                 exit;
         }
     }
