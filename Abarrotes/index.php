@@ -43,7 +43,15 @@ if(isset($_GET['url'])) {
     $urlArray = explode("/",$url);
     if($urlArray[count($urlArray)-1]=="")
         unset($urlArray[count($urlArray)-1]);
-    
+
+    if(isset($GLOBALS['env']['nginx'])) {
+        unset($urlArray[0]);
+        unset($urlArray[1]);
+        $urlArray = array_values($urlArray);
+    }
+
+
+
     if(file_exists( "Controladores/$urlArray[0]"."Controlador.php"))
         require "Controladores/$urlArray[0]"."Controlador.php";
     else{
