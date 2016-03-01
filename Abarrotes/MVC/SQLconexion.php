@@ -9,7 +9,7 @@ class SQLconexion {
                 $GLOBALS['env']['db_user'],
                 $GLOBALS['env']['db_pass'],
                 $GLOBALS['env']['db_base'])){
-           self::$db->query('SET time_zone = "Mexico/General"');
+           self::$db->query('SET time_zone = "-06:00"');
             mysqli_set_charset(self::$db, "latin1");   
            // mysql_query("SET NAMES 'utf8'");
             return "Conexión correcta"; 
