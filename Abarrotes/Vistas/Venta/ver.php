@@ -133,7 +133,7 @@
                 <div id="divGranTotal">Total: $0.00</div>
                 <br>
                 <input id="cancelarVenta" type="button" value="Cancelar Venta" accesskey="x"/>
-                <input type="submit" value="Realizar Venta" accesskey="r" tabindex="9" title="Alt+R"/>
+                <input id="realizar-venta" type="submit" value="Realizar Venta" accesskey="r" tabindex="9" title="Alt+R"/>
             </form>
             <br>
         </div>
@@ -505,7 +505,7 @@
             }; 
             
             function showRequest(formData, jqForm, options) { 
-            
+                
                 if(productosEnTabla.length == 0){
                     alert('No se han seleccionado productos');
                     return false;
@@ -516,9 +516,11 @@
                     return false;
                 }
                 console.log("hooola2");
+                $('#realizar-venta').prop('disabled',true);
                 if(confirm("¿Desea realizar la venta?")) {
                     return true;
                 }else{
+                    $('#realizar-venta').prop('disabled',false);
                     return false;
                 }
                 console.log("hooola3");
@@ -527,7 +529,9 @@
                 
             } 
             
-            function showResponse(responseText, statusText, xhr, $form)  { 
+            function showResponse(responseText, statusText, xhr, $form)  {
+                $('#realizar-venta').prop('disabled',false);
+
                 console.log(productosEnTabla);
                 if(responseText>0){
                     for(var i=0; i < productosEnTabla.length; i++){

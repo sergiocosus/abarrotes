@@ -48,7 +48,7 @@
                         <option value="Otros">Otros</option>
                     </select>
                 </div>
-                <input type="submit"/>
+                <input id="submit-update-product" type="submit"/>
             </form>
             </br>
             <button>Cancelar</button>
@@ -304,14 +304,18 @@ eleccion.hide();
 
 formActInv.ajaxForm(actualizacionOpciones);
 
-var actualizacionOpciones = { 
+var actualizacionOpciones = {
+    beforeSubmit: function(){
+        $('#submit-update-product').prop('disabled',true);
+    },
     success:       despues  // post-submit callback   
 }; 
 
 $(formActInv[0]).ajaxForm(actualizacionOpciones);
 
 var testt;
-function despues(responseText, statusText, xhr, $form)  { 
+function despues(responseText, statusText, xhr, $form)  {
+    $('#submit-update-product').prop('disabled',false);
     if(responseText=="0"){
         eleccion.hide(200);
         Existencias.cantidad.val(0);
