@@ -98,6 +98,7 @@
                var idactual=-1;
                table=null;
                var total=0;
+               var totalProductos = 0;
                for(var i=0; i<json.length;i++){
                    if(idactual!=json[i].id_venta){
                        var totalVenta=0;
@@ -153,7 +154,9 @@
                        td5.append(json[i].total.formatMoney());
 
                        totalVenta+=parseFloat(json[i].total);
+                       totalProductos+= +json[i].cantidad;
                        $totalVenta.text('Total '+totalVenta.formatMoney());
+
                        tr.append(td1,td2,td3,td4,td5);
                        table.append(tr);
                    }
@@ -161,7 +164,10 @@
                        //formInsertar.children('[name=n_auto]').attr('value',event.data);
 
                     total+=parseFloat(json[i].total);
-               } 
+               }
+
+               lista.prepend($('<b>',{text:'<<Total de productos: '+totalProductos.toFixed(3)+">>"}));
+               lista.prepend($('<br>'));
                lista.prepend($('<b>',{text:'<<Gran Total: '+total.formatMoney()+">>"}));
            }
        } 

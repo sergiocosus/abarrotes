@@ -176,6 +176,7 @@
      </tr>');
                var totalPrecio=0;
                var totalCosto=0;
+               var totalProductos = 0;
                for(var i=0; i<json.length;i++){
                    var row=[];
                   tr=$('<tr>');
@@ -193,13 +194,15 @@
                         $('<td>',{text:costoTotal.formatMoney()}),
                         $('<td>',{text:json[i].precio.formatMoney()}),
                         $('<td>',{text:json[i].precioTotal.formatMoney()}));
-                
+                    totalProductos += +json[i].existencias;
                     totalPrecio+=parseFloat(json[i].precio)*parseFloat(json[i].existencias);
                     totalCosto+=parseFloat(json[i].costo||0)*parseFloat(json[i].existencias);
                     tabla.append(tr);
                }
                lista.append(tabla);
                lista.prepend($('<b>',{text:'Cantidad de productos diferentes: '+json.length}));
+               lista.prepend($('<br/>'));
+               lista.prepend($('<b>',{text:'Cantidad de productos total: '+ totalProductos.toFixed(2)}));
                lista.prepend($('<br/>'));
                lista.prepend($('<b>',{text:'Valor al Precio del Inventario: '+totalPrecio.formatMoney()}));
                lista.prepend($('<br/>'));
