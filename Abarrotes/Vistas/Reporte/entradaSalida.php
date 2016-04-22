@@ -106,6 +106,8 @@
                var idactual=-1;
                table.html('<tr><th>Fecha y Hora</th><th>#Usuario</th><th>Nombre</th><th>#Producto</th><th>Nombre</th><th>Tipo</th><th>Cantidad</th><th>Costo</th><th>SubTotal</th></tr>')
                var total = 0;
+               var totalProductoNegativo = 0;
+               var totalProductoPositivo = 0;
                for(var i=0; i<json.length;i++){
                     tr=$('<tr>');
 
@@ -120,11 +122,18 @@
                     s9=$('<td>',{text: (+json[i].usuario_producto_cantidad * +json[i].costo).formatMoney()});
                     total += +json[i].usuario_producto_cantidad * +json[i].costo;
                    console.log(total);
+                   if(json[i].usuario_producto_cantidad > 0){
+                       totalProductoPositivo += +json[i].usuario_producto_cantidad;
+                   }else{
+                       totalProductoNegativo += -json[i].usuario_producto_cantidad
+                   }
                     tr.append(s1,s2,s3,s4,s5,s6,s7,s8,s9);
                     table.append(tr);
                }
            }
            lista.append($('<b>',{text:'<<Gran Total: '+total.formatMoney()+">>"}),'<br/>');
+           lista.append($('<b>',{text:'<<Total de bajas de productos: '+totalProductoNegativo.toFixed(3)+">>"}),'<br/>');
+           lista.append($('<b>',{text:'<<Total de altas de productos: '+totalProductoPositivo.toFixed(3)    +">>"}),'<br/>');
            lista.append(table);
        } 
 
