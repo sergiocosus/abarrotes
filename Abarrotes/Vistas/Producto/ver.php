@@ -223,7 +223,8 @@ function agregarElementosConsulta(json){
         );
         with(Producto){
         tr.append(
-            form.append($('<td>').append(id_producto(json[i].id_producto).attr('form','form'+i))),
+            form,
+            $('<td>').append(id_producto(json[i].id_producto).attr('form','form'+i)),
             $('<td>').append(codigo_barras(json[i].codigo_barras).attr('form','form'+i)),
             $('<td>').append(nombre(json[i].nombre).attr('form','form'+i)),
             $('<td>').append(descripcion(json[i].descripcion).attr('form','form'+i)),
