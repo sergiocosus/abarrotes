@@ -64,7 +64,7 @@ class InventarioControlador extends BaseControlador {
                 }
             }
         }
-        
+
         if(isset($_POST['existencias_min'])){
             $condiciones[]=&$_POST['existencias_min'];
             $tipos.='d';
@@ -90,6 +90,14 @@ class InventarioControlador extends BaseControlador {
             else
                 $condicion.=' and existencias<= minimo';
         }
+
+        if(count($condiciones)==1)
+            $condicion.='where oculto = 0';
+        else
+            $condicion.=' and oculto = 0';
+
+
+
         $cliente=($modelo::obtenerTodos($condicion, $condiciones,$tipos,$order));
         $json=  json_encode($cliente);
         

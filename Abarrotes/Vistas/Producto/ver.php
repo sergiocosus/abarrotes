@@ -67,6 +67,20 @@
                         </th>
                     </tr>
                     <tr>
+                     <b>Ordenar por:</b>  Nombre
+                     <select name="orderNombre">
+                         <option value="no">
+                             Sin orden
+                         </option>
+                         <option value="asc">
+                             Ascendente
+                         </option>
+                         <option value="desc">
+                             Descendente
+                         </option>
+                     </select>
+                    </tr>
+                    <tr>
                         <th>#Producto</th>
                         <th>Codigo de Barras</th>
                         <th>Nombre</th>
@@ -76,6 +90,7 @@
                         <th>Existencias</th>
                         <th>Mínimo</th>
                         <th>Unidad</th>
+                        <th>Oculto</th>
                     </tr>
                     <tr id="camposObtenerVarios">
                     </tr>
@@ -135,7 +150,7 @@ var span=[];
 var td=[];
 
 
-for(var i=0;i<9;i++){
+for(var i=0;i<10;i++){
     checkbox[i]=$('<input>',{type:'checkbox'});
     span[i]=$('<span>');
     td[i]=$('<td>').append(checkbox[i],span[i]);
@@ -154,6 +169,7 @@ span[5].append(Producto.precio().prop('disabled',true));
 span[6].append(existencias);
 span[7].append(Producto.minimo().prop('disabled',true));
 span[8].append(Producto.unidad("u").prop('disabled',true));
+span[9].append(Producto.oculto(true).prop('disabled',true));
 
 camposObtenerVarios.append($('<td>').append($('<span>').append(Modelo.consultar())));
 
@@ -186,6 +202,7 @@ function agregarElementosConsulta(json){
     lista.append(th);
     for(var i=0; i<json.length;i++){
         var tr=$('<tr>');
+        var producto = json[i];
         
         var eliminar=$('<button>',{type:'submit',text:"X"});
         eliminar.on('click',{form:tr,elemento:json[i]},function(e){
@@ -197,6 +214,30 @@ function agregarElementosConsulta(json){
                     e.data.form.remove();
                 });
             }
+        });
+
+        var ocultar=$('<button>',{
+            type:'submit',
+            class: 'hide-and-show',
+            text: json[i].oculto ? "Desocultar" : "Ocultar"
+        });
+
+        ocultar.on('click', {form: tr, elemento: json[i]}, function (e) {
+            data = e;
+            var target = e.target;
+            $.post(
+                '/Abarrotes/Producto/Ocultar',
+                {
+                    id_producto: e.data.elemento.id_producto,
+                    oculto: (!e.data.elemento.oculto) ? 'true' : 'false'
+                },
+                function (info) {
+                    console.log(e.data.elemento.oculto);
+                    e.data.elemento.oculto = !e.data.elemento.oculto;
+
+                    target.innerHTML = e.data.elemento.oculto ? "Desocultar" : "Ocultar";
+                    console.log(this);
+                });
         });
         
         var form=$('<form>',{action:"/Abarrotes/Producto/Actualizar",
@@ -234,7 +275,8 @@ function agregarElementosConsulta(json){
             $('<td>').append(minimo(json[i].minimo).attr('form','form'+i)),
             $('<td>').append(unidad(json[i].unidad,existencias).attr('form','form'+i)),
             $('<td>').append(submit.attr('form','form'+i)),
-            $('<td>').append(eliminar)
+            $('<td>').append(eliminar),
+            $('<td>').append(ocultar)
             );
         }
 
@@ -341,8 +383,11 @@ function despues(responseText, statusText, xhr, $form)  {
         .botonEliminar{
             display: inline-block;
         }
+
+        .hide-and-show {
+            width: auto !important;
+        }
     </style>
     <?php include 'library/MuestraUsuario.php'; ?>
     </body>
 </html>
- 

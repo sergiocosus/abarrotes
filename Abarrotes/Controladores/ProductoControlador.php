@@ -71,6 +71,21 @@ class ProductoControlador extends BaseControlador {
         }else
             echo "-4";
     }
+
+    function accionOcultar(){
+        sesionNivel('a');
+        $modelo=$this->modelo;
+        include_once 'Modelos/'.$modelo.'.php';
+
+        if(isset($_POST['id_producto'])){
+            if($modelo::ocultar($_POST['id_producto'], $_POST['oculto'] === 'true' ? 1 : 0)==0){
+                    echo "0";
+                }else{
+                    echo "1";
+                }
+        }else
+            echo "-4";
+    }
     
     function accionBusqueda(){
         $modelo=$this->modelo;
@@ -81,7 +96,7 @@ class ProductoControlador extends BaseControlador {
         $condicion='';
         
         if(isset($_POST['nombre'])){
-            $condicion.=" where nombre like CONCAT('%',?,'%')";
+            $condicion.=" where nombre like CONCAT('%',?,'%') and oculto = 0";
             $nombre=$_POST['nombre'];
              $condiciones[]=&$nombre;
              $tipos.='s';

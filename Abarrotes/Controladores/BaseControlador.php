@@ -67,7 +67,7 @@ abstract class BaseControlador {
             }
         }
         $order="";
-        $arrayOrder=array('orderExistencia'=>'existencias','orderPrecio'=>'precio');
+        $arrayOrder=array('orderExistencia'=>'existencias','orderPrecio'=>'precio', 'orderNombre'=>'nombre');
         foreach($arrayOrder  as $orderTipo => $arrayValor){
             if(isset($_POST[$orderTipo])){
                 switch ($_POST[$orderTipo]){
@@ -109,6 +109,17 @@ abstract class BaseControlador {
             else
                 $condicion.=' and existencias<= ?';
         }
+
+         if(isset($_POST['oculto'])){
+             $i = $_POST['oculto'] === 'true' ? 1 : 0;
+             $condiciones[]= &$i;
+             $tipos.='d';
+             if(count($condiciones) == 1)
+                $condicion.=' where oculto = ?';
+            else
+                $condicion.=' and oculto = ?';
+        }
+
         $cliente=($modelo::obtenerTodos($condicion, $condiciones,$tipos,$order));
         $json=  json_encode($cliente);
         

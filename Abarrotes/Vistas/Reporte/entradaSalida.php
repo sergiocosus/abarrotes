@@ -106,8 +106,11 @@
                var idactual=-1;
                table.html('<tr><th>Fecha y Hora</th><th>#Usuario</th><th>Nombre</th><th>#Producto</th><th>Nombre</th><th>Tipo</th><th>Cantidad</th><th>Costo</th><th>SubTotal</th></tr>')
                var total = 0;
+               var totalProductos = 0;
                var totalProductoNegativo = 0;
+               var totalProductoCostoNegativo = 0;
                var totalProductoPositivo = 0;
+               var totalProductoCostoPositivo = 0;
                for(var i=0; i<json.length;i++){
                     tr=$('<tr>');
 
@@ -121,19 +124,26 @@
                     s8=$('<td>',{text:json[i].costo.formatMoney()});
                     s9=$('<td>',{text: (+json[i].usuario_producto_cantidad * +json[i].costo).formatMoney()});
                     total += +json[i].usuario_producto_cantidad * +json[i].costo;
+                   totalProductos += +json[i].usuario_producto_cantidad;
                    console.log(total);
                    if(json[i].usuario_producto_cantidad > 0){
                        totalProductoPositivo += +json[i].usuario_producto_cantidad;
+                       totalProductoCostoPositivo += +json[i].usuario_producto_cantidad * json[i].costo;
                    }else{
-                       totalProductoNegativo += -json[i].usuario_producto_cantidad
+                       totalProductoNegativo += -json[i].usuario_producto_cantidad;
+                       totalProductoCostoNegativo += -json[i].usuario_producto_cantidad * json[i].costo;
                    }
                     tr.append(s1,s2,s3,s4,s5,s6,s7,s8,s9);
                     table.append(tr);
                }
            }
-           lista.append($('<b>',{text:'<<Gran Total: '+total.formatMoney()+">>"}),'<br/>');
+           lista.append($('<b>',{text:'<<Gran Total de productos: '+totalProductos.toFixed(3)+">>"}),'<br/>');
            lista.append($('<b>',{text:'<<Total de bajas de productos: '+totalProductoNegativo.toFixed(3)+">>"}),'<br/>');
-           lista.append($('<b>',{text:'<<Total de altas de productos: '+totalProductoPositivo.toFixed(3)    +">>"}),'<br/>');
+           lista.append($('<b>',{text:'<<Total de altas de productos: '+totalProductoPositivo.toFixed(3) +">>"}),'<br/>');
+
+           lista.append($('<b>',{text:'<<Gran Total: '+total.formatMoney()+">>"}),'<br/>');
+           lista.append($('<b>',{text:'<<Total de bajas: '+totalProductoCostoNegativo.formatMoney()+">>"}),'<br/>');
+           lista.append($('<b>',{text:'<<Total de altas: '+totalProductoCostoPositivo.formatMoney()    +">>"}),'<br/>');
            lista.append(table);
        } 
 
@@ -158,7 +168,6 @@
             $(this).children('input').removeAttr('disabled');
             $(this).prev().prop('checked',true);
             $(this).children('input').focus();
-            console.log("hola");
         });
         formObtenerVarios.find(':checkbox').on('click',function(){
              $(this).next().children().prop('disabled',!$(this).prop('checked'));

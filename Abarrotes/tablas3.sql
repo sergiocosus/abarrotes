@@ -108,3 +108,8 @@ create view inventario as (
         p.existencias*p.precio as subtotal, c.id as id_categoria,
          c.nombre as categoria   from producto as p join categoria as c on (id_categoria=id)
 );
+
+
+
+alter table producto
+    add oculto tinyint(1) default false null;

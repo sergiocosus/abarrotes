@@ -2,7 +2,7 @@
 include_once("MVC/SQLconexion.php");
 class Producto extends SQLconexion{
     public static $tabla = "producto";
-    public $id_producto,$codigo_barras,$nombre,$descripcion,$precio,$existencias,$minimo,$unidad,$id_categoria,$costo;
+    public $id_producto,$codigo_barras,$nombre,$descripcion,$precio,$existencias,$minimo,$unidad,$id_categoria,$costo,$oculto;
     public static $array=[['id_producto','s'],['codigo_barras','s'],['nombre','s'],
     ['descripcion','s'],['precio','d'],['existencias','d'],['minimo','i'],['unidad','s'],['id_categoria','i'],
         ['id_categoria','i']
@@ -32,7 +32,7 @@ class Producto extends SQLconexion{
             call_user_func_array(array($stmt, "bind_param"), array_merge(array($type), $condiciones));
         $stmt->bind_result($producto->id_producto,$producto->codigo_barras,$producto->nombre,
                 $producto->descripcion,$producto->precio,$producto->existencias,
-                $producto->unidad,$producto->id_categoria,$producto->costo,$producto->minimo);
+                $producto->unidad,$producto->id_categoria,$producto->costo,$producto->minimo, $producto->oculto);
         echo $stmt->error;
         if($stmt->execute())
             while($stmt->fetch()){
@@ -40,7 +40,7 @@ class Producto extends SQLconexion{
                 $producto=new Producto();
                 $stmt->bind_result($producto->id_producto,$producto->codigo_barras,$producto->nombre,
                 $producto->descripcion,$producto->precio,$producto->existencias,
-                $producto->unidad,$producto->id_categoria,$producto->costo,$producto->minimo);
+                $producto->unidad,$producto->id_categoria,$producto->costo,$producto->minimo, $producto->oculto);
             }
         else
             return null;
@@ -108,6 +108,14 @@ class Producto extends SQLconexion{
         
         $result=self::prepare('DELETE FROM '.static::$tabla.' WHERE id_producto=?');
         $result->bind_param('s',$id);
+        $result->execute();
+        echo $result->error;
+        return $result->errno;
+    }
+
+    static function ocultar($id, $oculto){
+        $result=self::prepare('UPDATE '.static::$tabla.' set oculto=?  WHERE id_producto=?');
+        $result->bind_param('dd', $oculto, $id);
         $result->execute();
         echo $result->error;
         return $result->errno;

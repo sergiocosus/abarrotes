@@ -277,7 +277,7 @@
             
             codigoBarras.keypress(function (e) {
               if (e.which == 13) {
-                $.post("/Abarrotes/Producto/ObtenerTodos", { codigo_barras: $('#codigoBarras').val() },function(data){
+                $.post("/Abarrotes/Producto/ObtenerTodos", { codigo_barras: $('#codigoBarras').val(), oculto: false },function(data){
                      productos =  JSON.parse(data);
                     
                     if(productos.length!==0){

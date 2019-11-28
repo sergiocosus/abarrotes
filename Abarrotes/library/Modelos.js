@@ -272,6 +272,13 @@ Producto.unidad=function(valor,existencias){
    return  select;
 };
 
+Producto.oculto = function (valor) {
+    var select = $('<select name="oculto">');
+    select.append($('<option value="true">Ocultos</option>'))
+    select.append($('<option value="false">No ocultos</option>'))
+    return select;
+};
+
 
 
 var Categoria=new Object();
