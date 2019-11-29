@@ -15,7 +15,7 @@ class Producto extends SQLconexion{
             call_user_func_array(array($stmt, "bind_param"), array_merge(array($type), $condiciones));
         $stmt->bind_result($producto->id_producto,$producto->codigo_barras,$producto->nombre,
                 $producto->descripcion,$producto->precio,$producto->existencias,
-                $producto->unidad,$producto->id_categoria,$producto->costo,$producto->minimo);
+                $producto->unidad,$producto->id_categoria,$producto->costo,$producto->minimo, $producto->oculto);
         if($stmt->execute()){
             if ($renglon = $stmt->fetch())      
                 return $producto;
